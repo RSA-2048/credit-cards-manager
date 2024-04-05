@@ -1,0 +1,34 @@
+# .NET Core
+bin/
+obj/
+out/
+*.suo
+*.user
+*.userosscache
+*.dll
+*.exe
+*.pdb
+*.nupkg
+*.cache
+*.config
+*.props
+*.deps.json
+*.runtimeconfig.json
+*.runtimeconfig.dev.json
+*.wapproj
+*.csproj.user
+*.pubxml
+*.pubxml.user
+*.log
+*.vspscc
+*.vssscc
+.vs/
+
+# React / Node.js
+node_modules/
+/build/
+/.cache
+/.idea
+/.vscode
+npm-debug.log
+yarn-error.log
