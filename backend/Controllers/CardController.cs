@@ -17,22 +17,22 @@ namespace credit_cards_manager.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Card>> Get(string? cardNumber = null, string? bankCode = null, bool? isBlocked = null)
+        public ActionResult<List<Card>> Get(string? cardNumber = null, int? BankId = null, bool? isBlocked = null)
         {
-            return _cardService.GetCards(cardNumber, bankCode, isBlocked);
+            return _cardService.GetCards(cardNumber, BankId, isBlocked);
         }
 
         [HttpPost]
         public IActionResult Post(CreditLimitRequest request)
         {
-            bool result = _cardService.IncreaseCreditLimit(request);
-            if (result)
+            var result = _cardService.IncreaseCreditLimit(request);
+            if (result.IsSuccessful)
             {
-                return Ok();
+                return Ok(result.Message);
             }
             else
             {
-                return BadRequest();
+                return BadRequest(result.Message);
             }
         }
     }

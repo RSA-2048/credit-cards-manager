@@ -5,7 +5,7 @@ namespace credit_cards_manager.Services
 {
     public interface ICardService
     {
-        List<Card> GetCards(string? cardNumber = null, string? bankCode = null, bool? isBlocked = null);
-        bool IncreaseCreditLimit(CreditLimitRequest request);
+        List<Card> GetCards(string? cardNumber = null, int? BankId = null, bool? isBlocked = null);
+        CreditLimitIncreaseResult IncreaseCreditLimit(CreditLimitRequest request);
     }
 }
