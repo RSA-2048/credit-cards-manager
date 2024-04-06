@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      {/* <SearchForm onSubmit={handleSearchSubmit} /> */}
+      <SearchForm onSubmit={handleSearchSubmit} />
       <CardList cards={cards} onCardClick={handleCardClick} />
       {/* {selectedCard && (
         <IncreaseLimitForm card={selectedCard} onSubmit={handleIncreaseLimitSubmit} />
