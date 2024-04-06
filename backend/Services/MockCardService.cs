@@ -10,9 +10,9 @@ namespace credit_cards_manager.Tests
     {
         private List<Card> _cards = new List<Card>
         {
-            new Card { Id = 1, BankId = 1, CardNumber = "1234567890123456", IssueDate = DateTime.Now, Image = "image1.png", IsBlocked = false, IsDigital = true, CreditLimit = 5000000 },
-            new Card { Id = 2, BankId = 2, CardNumber = "2345678901234567", IssueDate = DateTime.Now, Image = "image2.png", IsBlocked = true, IsDigital = false, CreditLimit = 10000 },
-            new Card { Id = 3, BankId = 3, CardNumber = "3456789012345678", IssueDate = DateTime.Now, Image = "image3.png", IsBlocked = false, IsDigital = true, CreditLimit = 15000 },
+            new Card { Id = 1, BankId = 1, CardNumber = "1234567890123456", IssueDate = DateTime.Now, Image = "/CardImages/credit-card-png-1.png", IsBlocked = false, IsDigital = true, CreditLimit = 5000000 },
+            new Card { Id = 2, BankId = 2, CardNumber = "2345678901234567", IssueDate = DateTime.Now, Image = "/CardImages/credit-card-png-1.png", IsBlocked = true, IsDigital = false, CreditLimit = 10000 },
+            new Card { Id = 3, BankId = 3, CardNumber = "3456789012345678", IssueDate = DateTime.Now, Image = "/CardImages/credit-card-png-1.png", IsBlocked = false, IsDigital = true, CreditLimit = 15000 },
         };
 
         public List<Card> GetCards(string? cardNumber = null, int? BankId = null, bool? isBlocked = null)
@@ -69,7 +69,6 @@ namespace credit_cards_manager.Tests
                         result.Message = "The occupation is not valid for a credit limit increase.";
                         return result;
                 }
-
                 // Check if the requested credit limit increase is within the allowable range.
                 if (request.RequestedCreditLimit <= maxIncrease)
                 {

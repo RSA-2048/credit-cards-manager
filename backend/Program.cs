@@ -1,3 +1,5 @@
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 using credit_cards_manager.Services;
 using credit_cards_manager.Tests;
 
@@ -23,6 +25,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Configure static files to be served from the CardImages folder
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "CardImages")),
+    RequestPath = "/CardImages"
+});
 
 app.UseAuthorization();
 
