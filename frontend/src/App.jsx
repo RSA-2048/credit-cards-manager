@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 import './App.css'
 import SearchForm from './components/SearchForm';
@@ -13,13 +13,14 @@ function App() {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/Card', {
+        const response = await axios.get('https://localhost:7099/Card', {
           params: {
             cardNumber: filters.cardNumber,
             BankId: filters.bank,
             isBlocked: filters.blocked,
           },
         });
+        console.log('Fetched cards:', response.data);
         setCards(response.data);
       } catch (error) {
         console.error('Failed to fetch cards:', error);
@@ -45,11 +46,11 @@ function App() {
 
   return (
     <>
-      <SearchForm onSubmit={handleSearchSubmit} />
+      {/* <SearchForm onSubmit={handleSearchSubmit} /> */}
       <CardList cards={cards} onCardClick={handleCardClick} />
-      {selectedCard && (
+      {/* {selectedCard && (
         <IncreaseLimitForm card={selectedCard} onSubmit={handleIncreaseLimitSubmit} />
-      )}
+      )} */}
     </>
   );
 }

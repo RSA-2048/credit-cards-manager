@@ -4,8 +4,10 @@ const Card = ({cardNumber, cardImage, bankName}) => {
   return (
     <div>
         {cardNumber}
+        <br />
         {bankName}
-        <image src={cardImage} alt="Card Image" />
+        <br />
+        <img src={`https://localhost:7099${cardImage}`} alt={cardImage} />
     </div>
   )
 }

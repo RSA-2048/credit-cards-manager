@@ -6,7 +6,7 @@ const CardList = ({ cards }) => {
   return (
     <div>
         {cards.map(card => (
-            <Card key={card.id} cardNumber={card.cardNumber} cardImage={card.cardImage} bankName={card.bank.name} />
+            <Card key={card.id} cardNumber={card.cardNumber} cardImage={card.image} bankName={card.bankId} /> 
         ))}
     </div>
   )
