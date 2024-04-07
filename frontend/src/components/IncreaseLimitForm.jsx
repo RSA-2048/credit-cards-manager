@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
-const IncreaseLimitForm = ({ card }) => {
+const IncreaseLimitForm = ({ card, onSuccess }) => {
   const [requestedLimit, setRequestedLimit] = useState('');
   const [occupation, setOccupation] = useState('');
   const [monthlyIncome, setMonthlyIncome] = useState('');
@@ -12,8 +13,33 @@ const IncreaseLimitForm = ({ card }) => {
     if (card.isBlocked) {
       alert('This card is blocked and cannot have its limit increased.');
     } else {
-      // TODO: Call an API to increase the credit limit
-      alert('Credit limit increase request submitted.');
+      // Prepare the data to send in the request body
+      const data = {
+        cardId: card.id,
+        requestedCreditLimit: requestedLimit,
+        occupation: occupation,
+        averageMonthlyIncome: monthlyIncome
+      };
+
+      axios.post('https://localhost:7099/Card', data)
+        .then(response => { // Handle successful response
+          alert(response.data);
+          if (onSuccess) {
+            onSuccess(); // if the request was successful, we cakk the onSuccess callback that closes the modal
+          }
+        })
+        .catch(error => { // Handle error
+          if (error.response) {
+            // The increase credit limit request was denied by the server (the reason will be in the response body)
+            alert(error.response.data);
+          } else if (error.request) {
+            // The request was made but no response was received
+            alert('No response received from the server.');
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            alert('An error occurred while submitting the request.');
+          }
+        });
     }
   };
 

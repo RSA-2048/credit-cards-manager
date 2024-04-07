@@ -28,7 +28,7 @@ const CardList = ({ cards }) => {
           <Modal.Title>Increase Credit Limit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {selectedCard && <IncreaseLimitForm card={selectedCard} />}
+          {selectedCard && <IncreaseLimitForm card={selectedCard} onSuccess={handleCloseModal} />}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
