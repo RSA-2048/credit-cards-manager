@@ -8,7 +8,7 @@ import IncreaseLimitForm from './components/IncreaseLimitForm';
 function App() {
   const [filters, setFilters] = useState({ blocked: null, cardNumber: '', bank: '' });
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [banks, setBanks] = useState([]);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -30,27 +30,29 @@ function App() {
     fetchCards();
   }, [filters]);
 
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const response = await axios.get('https://localhost:7099/Bank');
+        console.log('Fetched banks:', response.data);
+        setBanks(response.data);
+      } catch (error) {
+        console.error('Failed to fetch banks data:', error);
+      }
+    };
+
+    fetchBanks();
+  }, []);
+
 
   const handleSearchSubmit = (newFilters) => {
     setFilters(newFilters);
   };
 
-  const handleCardClick = (card) => {
-    setSelectedCard(card);
-  };
-
-  const handleIncreaseLimitSubmit = (values) => {
-    // Call IncreaseCreditLimit endpoint with selectedCard and values
-    // Display notification to user
-  };
-
   return (
     <>
-      <SearchForm onSubmit={handleSearchSubmit} />
-      <CardList cards={cards} onCardClick={handleCardClick} />
-      {/* {selectedCard && (
-        <IncreaseLimitForm card={selectedCard} onSubmit={handleIncreaseLimitSubmit} />
-      )} */}
+      <SearchForm onSubmit={handleSearchSubmit} banks={banks} />
+      <CardList cards={cards} banks={banks} />
     </>
   );
 }

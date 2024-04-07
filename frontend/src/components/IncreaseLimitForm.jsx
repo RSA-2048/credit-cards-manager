@@ -45,11 +45,11 @@ const IncreaseLimitForm = ({ card, onSuccess }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formRequestedLimit">
+      <Form.Group controlId="formRequestedLimit" className="mb-2">
         <Form.Label>Requested Credit Limit Amount</Form.Label>
         <Form.Control type="number" value={requestedLimit} onChange={(e) => setRequestedLimit(e.target.value)} />
       </Form.Group>
-      <Form.Group controlId="formOccupation">
+      <Form.Group controlId="formOccupation" className="mb-2">
         <Form.Label>Occupation</Form.Label>
         <Form.Control as="select" value={occupation} onChange={(e) => setOccupation(e.target.value)}>
           <option value="">Select...</option>
@@ -58,7 +58,7 @@ const IncreaseLimitForm = ({ card, onSuccess }) => {
           <option value="other">Other</option>
         </Form.Control>
       </Form.Group>
-      <Form.Group controlId="formMonthlyIncome">
+      <Form.Group controlId="formMonthlyIncome" className="mb-3">
         <Form.Label>Average Monthly Income</Form.Label>
         <Form.Control type="number" value={monthlyIncome} onChange={(e) => setMonthlyIncome(e.target.value)} />
       </Form.Group>

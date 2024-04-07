@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import './SearchForm.css';
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, banks }) {
   const [cardNumber, setCardNumber] = useState('');
   const [bank, setBank] = useState('');
   const [isBlocked, setIsBlocked] = useState('');
@@ -32,7 +32,12 @@ function SearchForm({ onSubmit }) {
         <Form.Group as={Row} controlId="formBank" className="mb-2">
           <Form.Label column sm={3}>Bank :</Form.Label>
           <Col sm={9}>
-            <Form.Control type="text" value={bank} onChange={e => setBank(e.target.value)} />
+            <Form.Control as="select" value={bank} onChange={e => setBank(e.target.value)}>
+              <option value="">All</option>
+              {banks.map((bank) => (
+                <option key={bank.id} value={bank.id}>{bank.name}</option>
+              ))}
+            </Form.Control>
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="formIsBlocked" className="mb-2">
