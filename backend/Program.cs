@@ -2,6 +2,7 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using credit_cards_manager.Services;
 using credit_cards_manager.Tests;
+using credit_cards_manager.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,10 @@ builder.Services.AddScoped<IBankService, MockBankService>();
 builder.Services.AddScoped<IUserService, UserService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
+// Configures CacheSettings with the values from the appsettings.json file:
+builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings"));
+
+// Add CORS policy to allow requests from the React app
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
