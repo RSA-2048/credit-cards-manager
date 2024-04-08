@@ -3,6 +3,9 @@ using System.IO;
 using credit_cards_manager.Services;
 using credit_cards_manager.Tests;
 using credit_cards_manager.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,19 @@ builder.Services.AddScoped<ICardService, MockCardService>();
 builder.Services.AddScoped<IBankService, MockBankService>();
 builder.Services.AddScoped<IUserService, UserService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("your_secret_key_here")),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+    });
 
 // Configures CacheSettings with the values from the appsettings.json file:
 builder.Services.Configure<CacheSettings>(builder.Configuration.GetSection("CacheSettings"));
@@ -51,6 +67,7 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = "/CardImages"
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
