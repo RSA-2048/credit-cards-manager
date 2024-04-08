@@ -19,7 +19,7 @@ namespace credit_cards_manager.Services
 
             // Generate a JWT.
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("your_secret_key_here"); // TODO: Replace with your secret key.
+            var key = Encoding.ASCII.GetBytes("your_secret_key_here_your_secret_key_here"); // TODO: Replace with the actual secret key.
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, request.Username) }),

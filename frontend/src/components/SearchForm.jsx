@@ -22,6 +22,7 @@ function SearchForm({ onSubmit, banks }) {
 
   return (
     <div className="form-container">
+      <h1 className="display-4 mb-4">Browse Credit Cards</h1>
       <Form onSubmit={handleSubmit} >
         <Form.Group as={Row} controlId="formCardNumber" className="mb-2">
           <Form.Label column sm={3}>Card Number :</Form.Label>

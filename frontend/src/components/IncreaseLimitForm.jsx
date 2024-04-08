@@ -27,11 +27,15 @@ const IncreaseLimitForm = ({ card, onSuccess }) => {
         averageMonthlyIncome: monthlyIncome
       };
 
-      axios.post('https://localhost:7099/Card', data)
+      axios.post('https://localhost:7099/Card', data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
         .then(response => { // Handle successful response
           alert(response.data);
           if (onSuccess) {
-            onSuccess(); // if the request was successful, we cakk the onSuccess callback that closes the modal
+            onSuccess(); // if the request was successful, we call the onSuccess callback that closes the modal
           }
         })
         .catch(error => { // Handle error

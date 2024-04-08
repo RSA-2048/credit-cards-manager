@@ -41,3 +41,9 @@
 .read-the-docs {
   color: #888;
 }
+
+.logout-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2em;
+}

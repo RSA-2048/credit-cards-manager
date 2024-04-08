@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using credit_cards_manager.Models;
 using credit_cards_manager.Services;
@@ -7,6 +8,7 @@ namespace credit_cards_manager.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class CardController : ControllerBase
     {
         private readonly ICardService _cardService;
