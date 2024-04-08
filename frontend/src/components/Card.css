@@ -20,4 +20,22 @@
   
   .card:hover .card-overlay {
     opacity: 1;
+    cursor: pointer;
   }
+
+.cardNumber {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 1220px) {
+  .cardNumber {
+    font-size: 23px
+  }
+}
+
+@media (max-width: 605px) {
+  .cardNumber {
+    font-size: 30px
+  }
+}

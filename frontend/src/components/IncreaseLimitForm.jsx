@@ -10,6 +10,12 @@ const IncreaseLimitForm = ({ card, onSuccess }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Check if all the inputs are filled
+    if (!requestedLimit || !occupation || !monthlyIncome) {
+      alert('Please fill all the fields.');
+      return;
+    }
+
     if (card.isBlocked) {
       alert('This card is blocked and cannot have its limit increased.');
     } else {
